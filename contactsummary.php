@@ -11,13 +11,21 @@ require_once 'contactsummary.civix.php';
  */
 function contactsummary_civicrm_pageRun(&$page) {
   if ($page instanceof CRM_Contact_Page_View_Summary) {
-    $kennismakingsgesprekLink = "https://crm.cvvede.nl/civicrm/contact/kennismakingsgesprek?cid2=".$page->getVar('_contactId');
-    CRM_Core_Region::instance('page-body')->add(array(
-      'template' => "CRM/Contact/Page/View/Summary/link_to_kennismakingsgesprek.tpl"
-    ));
+    try {
+      $contact = civicrm_api3('Contact', 'getsingle', array(
+        'id' => $page->getVar('_contactId'),
+        'contact_sub_type' => "Buddy",
+      ));
+      $kennismakingsgesprekLink = "https://crm.cvvede.nl/civicrm/contact/kennismakingsgesprek?cid2=".$page->getVar('_contactId');
+      CRM_Core_Region::instance('page-body')->add(array(
+        'template' => "CRM/Contact/Page/View/Summary/link_to_kennismakingsgesprek.tpl"
+      ));
 
-    $smarty = CRM_Core_Smarty::singleton();
-    $smarty->assign('link_to_kennismakingsgesprek', $kennismakingsgesprekLink);
+      $smarty = CRM_Core_Smarty::singleton();
+      $smarty->assign('link_to_kennismakingsgesprek', $kennismakingsgesprekLink);
+    } catch (Exception $e) {
+      // Do nothing
+    }
   }
 }
 
