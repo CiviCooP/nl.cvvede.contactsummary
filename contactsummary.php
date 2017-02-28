@@ -29,6 +29,27 @@ function contactsummary_civicrm_pageRun(&$page) {
   }
 }
 
+function contactsummary_civicrm_buildForm($formName, &$form) {
+  if ($formName == 'CRM_Activity_Form_ActivityLinks') {
+    $activityTypeToHide = array();
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Inschrijving Buddy', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Oproepje', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Oproepje plaatsen', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Kennismakingsgesprek', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'E-mailen / telefoneren', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Systeem verbeteren', 'return' => 'value', 'option_group_id' => 'activity_type'));
+    $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Uitzoekwerk / documentatie', 'return' => 'value', 'option_group_id' => 'activity_type'));
+
+    $urls = $form->get_template_vars('urls');
+    foreach($urls as $activity_type_id => $activity_link) {
+      if (in_array($activity_type_id, $activityTypeToHide)) {
+        unset($urls[$activity_type_id]);
+      }
+    }
+    $form->assign('urls', $urls);
+  }
+}
+
 /**
  * Implements hook_civicrm_config().
  *
