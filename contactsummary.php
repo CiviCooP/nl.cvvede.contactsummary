@@ -43,27 +43,7 @@ function contactsummary_civicrm_buildForm($formName, &$form) {
       // Do nothing
     }
     try {
-      $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Oproepje plaatsen', 'return' => 'value', 'option_group_id' => 'activity_type'));
-    } catch (Exception $e) {
-      // Do nothing
-    }
-    try {
       $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Kennismakingsgesprek', 'return' => 'value', 'option_group_id' => 'activity_type'));
-    } catch (Exception $e) {
-      // Do nothing
-    }
-    try {
-      $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'E-mailen / telefoneren', 'return' => 'value', 'option_group_id' => 'activity_type'));
-    } catch (Exception $e) {
-      // Do nothing
-    }
-    try {
-      $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Systeem verbeteren', 'return' => 'value', 'option_group_id' => 'activity_type'));
-    } catch (Exception $e) {
-      // Do nothing
-    }
-    try {
-      $activityTypeToHide[] = civicrm_api3('OptionValue', 'getvalue', array('label' => 'Uitzoekwerk / documentatie', 'return' => 'value', 'option_group_id' => 'activity_type'));
     } catch (Exception $e) {
       // Do nothing
     }
