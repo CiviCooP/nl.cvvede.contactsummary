@@ -1,6 +1,6 @@
 {capture assign="kennismakingsgesprek_button"}{strip}
     <li class="crm-odoo-action crm-contact-kennismakingsgesprek">
-        <a href="{$link_to_kennismakingsgesprek}" class="kennismakingsgesprek button" title="View in Odoo">
+        <a href="{$link_to_kennismakingsgesprek}" class="kennismakingsgesprek button" title="Kennismakingsgesprek">
             <span>{ts}Voer een kennismakingsgesprek in{/ts}</span>
         </a>
     </li>
